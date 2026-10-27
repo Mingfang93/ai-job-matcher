@@ -1,20 +1,29 @@
 
-# AI Job Matcher - Version 1.0
-# A simple Python-based job skill analyzer
+# AI Job Matcher - Version 1.1
 
-job_description = """
-We are looking for a working student.
-Python programming skills are required.
-LLM experience is preferred.
-Experience with SQL is a plus.
-"""
+requirements = [
+    "Python programming skills are required",
+    "LLM experience is preferred",
+    "SQL knowledge is required"
+]
 
 skills = ["Python", "LLM", "SQL", "Java"]
 
 print("=== AI Job Matcher ===")
 
 for skill in skills:
-    if skill.lower() in job_description.lower():
-        print(f"Found: {skill}")
-    else:
-        print(f"Not found: {skill}")
+    found = False
+
+    for requirement in requirements:
+        if skill.lower() in requirement.lower():
+            found = True
+
+            if "required" in requirement.lower():
+                print(f"{skill}: Mandatory")
+            elif "preferred" in requirement.lower():
+                print(f"{skill}: Preferred")
+            else:
+                print(f"{skill}: Mentioned")
+
+    if not found:
+        print(f"{skill}: Not found")
